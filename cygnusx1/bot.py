@@ -32,17 +32,3 @@ def main(args) -> bool:
             maps.append([img_srcs, save_dir, kw])
             stats[kw] = {"num_search": num_search_results, "num_scraping": len(img_srcs), "links": img_srcs}
             write_json(cached_file, stats)
-    LOGGER.info("Image downloading ...")
-    for kw, count in thread_map(download_image, maps,
-                                max_workers=args.workers, desc="Keywords Downloading", colour='green'):
-        stats[kw]["num_downloaded"] = count
-
-    LOGGER.info(f"\n{'='*21}SUMMARY{'='*21}")
-    LOGGER.info(f"Image crawl successful. Check results at '{args.out_dir}'")
-    for k, v in stats.items():
-        LOGGER.info(
-            f"Keywords: '{k}'; "
-            f"Searched: {v['num_search']}; "
-            f"Scraped: {v['num_scraping']}; "
-            f"Downloaded: {v['num_downloaded']};"
-        )
