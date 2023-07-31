@@ -22,7 +22,6 @@ def main(args) -> bool:
     LOGGER.info(f"Saved Dir: {args.out_dir}")
     LOGGER.info(f"\n{'=' * 23}MAIN{'=' * 22}")
     LOGGER.info("Image scraping ...")
-    ass
     with tqdm(keywords, desc="Scraping keywords", colour='green') as scrap_bar:
         cached_file = f"./{keywords[0]}.json"
         for kw in scrap_bar:
