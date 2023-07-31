@@ -35,9 +35,8 @@ def get_browser(headless=False) -> webdriver:
     options = webdriver.ChromeOptions()
     options.headless = headless
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
-    driver.delete_cookie("CONSENT")
-    driver.add_cookie({'name': 'CONSENT', 'value': "YES+shp.gws-"+str(date.today()).replace("-","")+"-0-RC2.en+FX+374"})
-    driver.refresh()
+    driver.get('https://www.google.com')
+    driver.find_element(By.XPATH, "//div[text()='Accept all']").click()
     return driver
 
 
