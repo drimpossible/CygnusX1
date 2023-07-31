@@ -21,7 +21,6 @@ def _get_google_suggests(root_url: str, headless: bool = False) -> List[str]:
         suggestions = browser.find_elements_by_class_name(GOOGLE_SUGGEST_CLASS)
         urls.update([s.get_attribute("href") for idx, s in enumerate(suggestions)
                      if s.get_attribute("href") is not None])
-        browser.quit()
     except Exception as _:
         # LOGGER.info(f"Failed to get google suggest.")
         pass
@@ -76,8 +75,7 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
     except Exception as _:
         # LOGGER.info(f"Failed to get google page image.")
         pass
-    finally:
-        browser.quit()
+
     return list(image_srcs), num_of_search_results
 
 
